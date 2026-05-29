@@ -155,7 +155,7 @@ st.markdown("""
 # Hero Section with Image and Visual Appeal
 col_hero_img, col_hero_text = st.columns([1, 2])
 with col_hero_img:
-    st.image("https://images.unsplash.com/photo-1553531088-2cc5d0399dcc?w=400&h=300&fit=crop", width=400)
+    st.image("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80", width=400)
 
 with col_hero_text:
     st.markdown("""
@@ -431,7 +431,7 @@ st.markdown("""
             Powered by Advanced Inference Engine • Real-time Supply Chain Analytics
         </div>
         <div style="font-size: 0.8em; color: #ccc; margin-top: 8px;">
-            © 2024 Intelligent Logistics Management Platform
+            © 2026 Intelligent Logistics Management Platform
         </div>
     </div>
     """, unsafe_allow_html=True)
