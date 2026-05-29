@@ -1,0 +1,161 @@
+📈 Layer 1: Demand Velocity Rules (R01 – R20)
+This layer looks at past sales numbers, market trends, and seasons to figure out how fast customers are buying the product.
+
+R01: If monthly sales are over 150 units, current demand is High.
+
+R02: If monthly sales are between 50 and 150 units, current demand is Medium.
+
+R03: If monthly sales are under 50 units, current demand is Low.
+
+R04: If it's Peak Season and demand is High, upcoming demand will be Explosive.
+
+R05: If it's Off-Season and demand is Low, upcoming demand will be Stagnant.
+
+R06: If market analytical reports show an upward curve, the market trend factor is Positive.
+
+R07: If market analytical reports show a downward curve, the market trend factor is Negative.
+
+R08: If current demand is High and market trends are Positive, upcoming demand will be Explosive.
+
+R09: If current demand is Medium and market trends are Positive, upcoming demand will be High.
+
+R10: If current demand is Low and market trends are Negative, upcoming demand will be Stagnant.
+
+R11: If it's Peak Season and current demand is Medium, upcoming demand will be High.
+
+R12: If it's Off-Season but current demand is High, upcoming demand levels out to Medium.
+
+R13: If it's a Normal Season but demand is High, upcoming demand is stable at High.
+
+R14: If it's a Normal Season and demand is Medium, upcoming demand is stable at Medium.
+
+R15: If it's a Normal Season and demand is Low, upcoming demand is stable at Low.
+
+R16: If market trends are Stable and current demand is Medium, upcoming demand is Medium.
+
+R17: If market trends are Stable and current demand is High, upcoming demand is High.
+
+R18: If market trends are Stable and current demand is Low, upcoming demand is Low.
+
+R19: If it's Peak Season and market trends are Trending Up, upcoming demand will be Explosive.
+
+R20: If it's Off-Season and market trends are Trending Down, upcoming demand will be Stagnant.
+
+🚚 Layer 2: Supply Line & Risk Rules (R21 – R38)
+This layer checks how long it takes the supplier to ship items, how reliable they are, and if there are any transport issues.
+
+R21: If shipping takes longer than 14 days, the lead time is Extended.
+
+R22: If shipping takes between 5 and 14 days, the lead time is Standard.
+
+R23: If shipping takes less than 5 days, the lead time is Rapid.
+
+R24: If the supplier successfully fulfills orders less than 70% of the time, supply risk is Critical.
+
+R25: If supplier reliability is between 70% and 85%, supply risk is Moderate.
+
+R26: If supplier reliability is above 85%, supply risk is Negligible (safe).
+
+R27: If lead time is Extended and supply risk is Critical, the supply line is Highly Volatile.
+
+R28: If lead time is Extended and supply risk is Moderate, the supply line will be Delayed.
+
+R29: If lead time is Rapid and supply risk is Negligible, the supply line is Highly Secure.
+
+R30: If there is a customs, border, or geopolitical issue, the supply risk automatically becomes Critical.
+
+R31: If there is a border issue and lead time is already Extended, the supply line is Highly Volatile.
+
+R32: If lead time is Standard and supply risk is Negligible, the supply line is Highly Secure.
+
+R33: If lead time is Rapid but supply risk is Moderate, the supply line is Standard Operational.
+
+R34: If lead time is Standard and supply risk is Moderate, the supply line is Standard Operational.
+
+R35: If lead time is Rapid but the supplier is Critical, the supply line is Highly Volatile.
+
+R36: If there is a border blockage and the supplier is failing (Critical), the supply line is completely Paralyzed.
+
+R37: If lead time is Extended but the supplier is elite (Negligible risk), the supply line is Slow But Stable.
+
+R38: If there are no border issues and the supplier is elite, the supply line is Highly Secure.
+
+🏬 Layer 3: Warehouse Capability Rules (R39 – R55)
+This layer looks inward at your warehouse: how much physical space is left, stock safety limits, expiration dates, and storage costs.
+
+R39: If stock drops below the safety limit, the stock status is Critically Low.
+
+R40: If stock is above safety limits but less than double the safety limit, the stock status is Low.
+
+R41: If stock is between double and triple the safety limit, the stock status is Moderate.
+
+R42: If stock is more than triple the safety limit, the stock status is a Surplus.
+
+R43: If an item is perishable and expires in 7 days or less, perishability risk is Extreme.
+
+R44: If an item is perishable and expires in 7 to 30 days, perishability risk is Moderate.
+
+R45: If an item is perishable but has more than 30 days left, perishability risk is Negligible.
+
+R46: If warehouse storage capacity utilization is 90% or more, warehouse vacancy is Full.
+
+R47: If warehouse storage capacity utilization is under 50%, warehouse vacancy is Abundant.
+
+R48: If warehouse capacity utilization is between 50% and 90%, warehouse vacancy is Balanced.
+
+R49: If warehouse holding costs are High and there is a stock Surplus, the financial drain is Severe.
+
+R50: If warehouse holding costs are Low and there is a stock Surplus, the financial drain is Mild.
+
+R51: If stock is Critically Low and the item is an essential revenue driver, the operational threat is High.
+
+R52: If perishability risk is Extreme and there is a stock Surplus, the operational threat is marked as Spoilage Waste.
+
+R53: If stock is Low and the item is an essential revenue driver, the operational threat is Medium.
+
+R54: If holding costs are High and the warehouse is Full, the financial drain is Severe.
+
+R55: If stock is Critically Low but the item is non-essential, the operational threat is Negligible.
+
+🎯 Layer 4: Replenishment Action Inference (R56 – R75)
+The final decision-making layer. It takes all the conclusions from Layers 1, 2, and 3 and determines the exact, final action to take.
+
+R56: If stock is Critically Low, demand is Explosive, and the supply line is Secure → Emergency Express Bulk Order (Priority: CRITICAL).
+
+R57: If stock is Critically Low but the supply line is Volatile → Split-Source Expedited Ordering from alternative suppliers (Priority: CRITICAL).
+
+R58: If stock is Critically Low but demand is Stagnant → Buy a Minimal Restock Order to minimize risk (Priority: Medium).
+
+R59: If stock is Low and upcoming demand is High → Place a Standard Routine Reorder (Priority: High).
+
+R60: If stock is Low but the supply line is Delayed → Order early with a Buffer-Inflated Advance Order (Priority: High).
+
+R61: If there is a stock Surplus and financial drain is Severe → Halt Ordering & Dynamic Markdown (discount items to clear space) (Priority: Low).
+
+R62: If there is an active threat of Spoilage Waste → Put items on a Flash Liquidation Sale immediately (Priority: High).
+
+R63: If the warehouse is Full and stock isn't critically low → Freeze Active Procurement (stop incoming shipments) (Priority: Low).
+
+R64: If there is a stock Surplus but upcoming demand is Explosive → Hold Procurement and prepare to sell your current stock (Priority: Low).
+
+R65: If a Standard Reorder is active and warehouse space is Abundant → Upgrade to an Economic Order Quantity (EOQ) Bulk Order to get discounts (Priority: Medium).
+
+R66: If stock is Low but the warehouse is completely Full → Use Just-In-Time (JIT) Micro-Ordering (buy tiny amounts as items sell) (Priority: Medium).
+
+R67: If operational threat is High and the supply line is Secure → Place a Priority Express Procurement order (Priority: CRITICAL).
+
+R68: If stock is Moderate but upcoming demand is High → Place a Preemptive Small Batch Restock before stock drops too low (Priority: Medium).
+
+R69: If stock is Moderate and upcoming demand is Medium → No Action Required; everything is balanced (Priority: Routine).
+
+R70: If stock is Moderate but upcoming demand is Low → Monitor Stock and Defer Reorder windows (Priority: Routine).
+
+R71: If stock is Low but demand is completely Stagnant → Strategic Tactical Deferral (hold off on ordering) (Priority: Low).
+
+R72: If there is a Surplus, stagnant demand, and financial drain is Mild → Freeze Procurement & Monitor Velocity (Priority: Low).
+
+R73: If the supply line is completely Paralyzed and stock is Low → Force-Route Alternative Sourcing from local suppliers (Priority: CRITICAL).
+
+R74: If the supply line is Slow But Stable and stock is Low → Use Early Lifecycle Reorder Placements to beat the shipping lag (Priority: High).
+
+R75: If stock is Critically Low but the item is completely non-essential → Place a Low Priority Routine Restock order (Priority: Low).
