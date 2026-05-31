@@ -4,7 +4,7 @@ from inference_engine import InventoryInferenceEngine
 import time
 
 st.set_page_config(
-    page_title="AI Supply Chain Expert System",
+    page_title="Smart Replenish AI",
     page_icon="📦",
     layout="wide",
     initial_sidebar_state="collapsed"  # Collapsed by default to maximize responsive screen real estate
@@ -507,8 +507,8 @@ st.markdown("""
              src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80"
              alt="Warehouse operations" />
         <div class="hero-content">
-            <div class="hero-eyebrow">Knowledge-Based Expert System</div>
-            <div class="hero-title">AI Supply Chain<br>Intelligence Hub</div>
+            <div class="hero-eyebrow">Smart Replenish AI</div>
+            <div class="hero-title">Intelligent Replenishment<br>Decision Platform</div>
             <div class="hero-sub">Smart inventory replenishment powered by forward-chaining inference over a 75-rule knowledge base with certainty factor reasoning.</div>
             <span class="hero-badge">⚡ LIVE INFERENCE ENGINE</span>
         </div>
@@ -753,10 +753,10 @@ else:
                  src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80"
                  alt="Warehouse inventory" />
             <div class="welcome-content">
-                <div class="welcome-title">📦 Inventory Intelligence Engine</div>
+                <div class="welcome-title">📦 Smart Replenish AI</div>
                 <div class="welcome-sub">
                     Configure your warehouse parameters and market metrics in the input panel matrix above, 
-                    then run the forward-chaining inference loop to view decisions.
+                    then run the forward-chaining inference loop to view recommendations from the expert system.
                 </div>
                 <div class="welcome-steps">
                     <div class="welcome-step">
@@ -780,7 +780,7 @@ else:
 # ── Footer Attribution ────────────────────────────────────────────────────────
 st.markdown("""
     <div class="footer">
-        <div class="footer-title">AI Supply Chain Expert System</div>
+        <div class="footer-title">Smart Replenish AI</div>
         <div class="footer-sub">Forward Chaining · 75-Rule Knowledge Base · Certainty Factor Reasoning · © 2026</div>
     </div>
 """, unsafe_allow_html=True)
