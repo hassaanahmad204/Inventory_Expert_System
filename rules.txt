@@ -126,21 +126,21 @@ R57: If stock is Critically Low but the supply line is Volatile → Split-Source
 
 R58: If stock is Critically Low but demand is Stagnant → Buy a Minimal Restock Order to minimize risk (Priority: Medium).
 
-R59: If stock is Low and upcoming demand is High → Place a Standard Routine Reorder (Priority: High).
+R59: If stock is Low or Critically Low and upcoming demand is High → Place a Standard Routine Reorder (Priority: High).
 
-R60: If stock is Low but the supply line is Delayed → Order early with a Buffer-Inflated Advance Order (Priority: High).
+R60: If stock is Low or Critically Low but the supply line is Delayed → Order early with a Buffer-Inflated Advance Order (Priority: High).
 
-R61: If there is a stock Surplus and financial drain is Severe → Halt Ordering & Dynamic Markdown (discount items to clear space) (Priority: Low).
+R61: If there is a stock Surplus and financial drain is Severe, and there is NO active Spoilage Waste threat → Halt Ordering & Dynamic Markdown (discount items to clear space) (Priority: Low). 
 
-R62: If there is an active threat of Spoilage Waste → Put items on a Flash Liquidation Sale immediately (Priority: High).
+R62: If there is an active threat of Spoilage Waste → Put items on a Flash Liquidation Sale immediately (Priority: High).  
 
-R63: If the warehouse is Full and stock isn't critically low → Freeze Active Procurement (stop incoming shipments) (Priority: Low).
+R63: If the warehouse is Full, stock isn't critically low, and there is NO active Spoilage Waste threat → Freeze Active Procurement (stop incoming shipments) (Priority: Low).  
 
 R64: If there is a stock Surplus but upcoming demand is Explosive → Hold Procurement and prepare to sell your current stock (Priority: Low).
 
 R65: If a Standard Reorder is active and warehouse space is Abundant → Upgrade to an Economic Order Quantity (EOQ) Bulk Order to get discounts (Priority: Medium).
 
-R66: If stock is Low but the warehouse is completely Full → Use Just-In-Time (JIT) Micro-Ordering (buy tiny amounts as items sell) (Priority: Medium).
+R66: If stock is Low or Critically Low but the warehouse is completely Full → Use Just-In-Time (JIT) Micro-Ordering (buy tiny amounts as items sell) (Priority: Medium).
 
 R67: If operational threat is High and the supply line is Secure → Place a Priority Express Procurement order (Priority: CRITICAL).
 
@@ -150,12 +150,12 @@ R69: If stock is Moderate and upcoming demand is Medium → No Action Required; 
 
 R70: If stock is Moderate but upcoming demand is Low → Monitor Stock and Defer Reorder windows (Priority: Routine).
 
-R71: If stock is Low but demand is completely Stagnant → Strategic Tactical Deferral (hold off on ordering) (Priority: Low).
+R71: If stock is Low or Critically Low but demand is completely Stagnant → Strategic Tactical Deferral (hold off on ordering) (Priority: Low).
 
 R72: If there is a Surplus, stagnant demand, and financial drain is Mild → Freeze Procurement & Monitor Velocity (Priority: Low).
 
-R73: If the supply line is completely Paralyzed and stock is Low → Force-Route Alternative Sourcing from local suppliers (Priority: CRITICAL).
+R73: If the supply line is completely Paralyzed and stock is Low or Critically Low → Force-Route Alternative Sourcing from local suppliers (Priority: CRITICAL).
 
-R74: If the supply line is Slow But Stable and stock is Low → Use Early Lifecycle Reorder Placements to beat the shipping lag (Priority: High).
+R74: If the supply line is Slow But Stable and stock is Low or Critically Low → Use Early Lifecycle Reorder Placements to beat the shipping lag (Priority: High).
 
 R75: If stock is Critically Low but the item is completely non-essential → Place a Low Priority Routine Restock order (Priority: Low).

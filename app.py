@@ -582,9 +582,19 @@ with st.expander("📥 Configure Environment Parameters & Facts Matrix", expande
         is_perishable = st.checkbox("Product Belongs to Perishable Class Segment", value=False)
         is_essential = st.checkbox("Classify Product as Essential Revenue Driver", value=True)
     with f_col8:
-        days_to_expiration = st.number_input("Days Remaining Until Active Spoilage", min_value=0, max_value=365, value=30)
-        holding_cost_rate = st.selectbox("Warehouse Carrying/Holding Overhead", ["Low", "Medium", "High"])
+        # Dynamically display the expiration tracking input fields only if it is a perishable product
+        if is_perishable:
+            days_to_expiration = st.number_input("Days Remaining Until Active Spoilage", min_value=0, max_value=365, value=30)
+        else:
+            # Fallback default value passed to the engine when the slider is hidden
+            days_to_expiration = 365
 
+        # Show warehouse overhead only when its rules may apply based on current stock/capacity inputs
+        show_overhead_config = storage_capacity >= 90 or current_stock > (safety_stock * 3)
+        if show_overhead_config:
+            holding_cost_rate = st.selectbox("Warehouse Carrying/Holding Overhead", ["Low", "Medium", "High"])
+        else:
+            holding_cost_rate = "Low"
 
 # ── Execute Button ────────────────────────────────────────────────────────────
 execute_button = st.button("▶  Run AI Inference Engine", type="primary", use_container_width=True)
@@ -672,11 +682,28 @@ if execute_button:
         """, unsafe_allow_html=True)
 
         fact_data = [
-            ("Demand Velocity",   final_state.get('demand_velocity',   '—')),
+            ("Demand Velocity",    final_state.get('demand_velocity',    '—')),
             ("Anticipated Demand", final_state.get('anticipated_demand', '—')),
-            ("Supply Risk",       final_state.get('supply_risk',       '—')),
-            ("Stock Status",      final_state.get('stock_status',      '—')),
+            ("Supply Risk",        final_state.get('supply_risk',        '—')),
+            ("Supply Line Status", final_state.get('supply_line_status', '—')),
+            ("Stock Status",       final_state.get('stock_status',       '—')),
         ]
+
+        # Show perishability risk only when item is perishable or a perishability risk was derived
+        if final_state.get('is_perishable') or final_state.get('perishability_risk') not in (None, ''):
+            fact_data.append(("Perishability Risk", final_state.get('perishability_risk', '—')))
+
+        # Warehouse vacancy should always be shown
+        fact_data.append(("Warehouse Vacancy", final_state.get('warehouse_vacancy', '—')))
+
+        # Financial drain only when applicable (derived or present)
+        if final_state.get('financial_drain') not in (None, '', '—'):
+            fact_data.append(("Financial Drain", final_state.get('financial_drain', '—')))
+
+        # Operational threat only shown when actually present
+        if final_state.get('operational_threat') not in (None, '', '—'):
+            fact_data.append(("Operational Threat", final_state.get('operational_threat', '—')))
+
         facts_html = "".join(f"""
             <div class="fact-row">
                 <span class="fact-key">{label}</span>
