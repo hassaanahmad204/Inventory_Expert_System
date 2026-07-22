@@ -69,36 +69,55 @@ The inference engine has been rigorously evaluated and verified across 5 core op
 Follow these exact steps to run the project locally on your machine.
 
 1. Prerequisites
+
 Ensure you have **Python 3.9+** installed on your system. You can verify this by running:
+
 ```bash
 python --version
+```
 
 2. Clone the Repository
+
 Clone the project from GitHub and navigate into the project directory:
 
-git clone [https://github.com/hassaanahmad204/smart-replenish-ai.git](https://github.com/hassaanahmad204/smart-replenish-ai.git)
+```bash
+git clone https://github.com/hassaanahmad204/smart-replenish-ai.git
 cd smart-replenish-ai
+```
 
 3. Set Up a Virtual Environment (Recommended)
+
 Creating an isolated environment ensures clean package management:
 
-Windows:
+**Windows:**
+
+```cmd
 python -m venv venv
 .\venv\Scripts\activate
+```
 
-Mac / Linux:
+**Mac / Linux:**
+
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
 
 4. Install Dependencies
+
 Install all required libraries specified in requirements.txt:
 
+```bash
 pip install -r requirements.txt
+```
 
 5. Launch the Application
+
 Run the Streamlit application:
 
+```bash
 streamlit run app.py
+```
 
 The web dashboard will launch automatically in your browser at http://localhost:8501.
 
