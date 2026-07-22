@@ -105,7 +105,7 @@ The web dashboard will launch automatically in your browser at http://localhost:
 ☁️ Live Cloud Deployment
 This application is hosted live on Streamlit Cloud:
 
-👉 Launch SmartReplenish AI Web App
+👉 **[Launch SmartReplenish AI Web App](https://smart-replenish-ai.streamlit.app/)**
 
 (Note: Free-tier deployments may enter sleep mode after inactivity. Clicking the link will awaken the container in ~30 seconds).
 
