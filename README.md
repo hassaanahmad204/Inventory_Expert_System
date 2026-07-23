@@ -2,7 +2,7 @@
 
 An interactive, production-grade **Forward-Chaining Inference Engine** with **Certainty Factors (CF)** designed to optimize supply chain procurement, mitigate inventory spoilage, and resolve complex warehouse operational states.
 
-![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B.svg)
 ![Status](https://img.shields.io/badge/Deployment-Live-brightgreen.svg)
 
@@ -53,7 +53,7 @@ Follow these exact steps to run the project locally on your machine.
 
 1. Prerequisites
 
-Ensure you have **Python 3.9+** installed on your system. You can verify this by running:
+Ensure you have **Python 3.10+** installed on your system. You can verify this by running:
 
 ```bash
 python --version

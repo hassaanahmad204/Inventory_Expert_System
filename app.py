@@ -559,6 +559,7 @@ with st.expander("📥 Configure Environment Parameters & Facts Matrix", expande
         storage_capacity = st.slider("Warehouse Storage Capacity Used (%)", 0, 100, value=42)
     with f_col2:
         safety_stock = st.slider("Safety Stock Limit Threshold", 10, 200, value=50)
+        holding_cost_rate = st.selectbox("Warehouse Carrying/Holding Overhead", ["Low", "Medium", "High"])
 
     st.markdown('<div class="form-section-title">Sales Velocity & Seasons</div>', unsafe_allow_html=True)
     f_col3, f_col4 = st.columns([1, 1])
@@ -586,15 +587,8 @@ with st.expander("📥 Configure Environment Parameters & Facts Matrix", expande
         if is_perishable:
             days_to_expiration = st.number_input("Days Remaining Until Active Spoilage", min_value=0, max_value=365, value=30)
         else:
-            # Fallback default value passed to the engine when the slider is hidden
+            # Fallback default value passed to the engine when non-perishable
             days_to_expiration = 365
-
-        # Show warehouse overhead only when its rules may apply based on current stock/capacity inputs
-        show_overhead_config = storage_capacity >= 90 or current_stock > (safety_stock * 3)
-        if show_overhead_config:
-            holding_cost_rate = st.selectbox("Warehouse Carrying/Holding Overhead", ["Low", "Medium", "High"])
-        else:
-            holding_cost_rate = "Low"
 
 # ── Execute Button ────────────────────────────────────────────────────────────
 execute_button = st.button("▶  Run AI Inference Engine", type="primary", use_container_width=True)
@@ -647,12 +641,12 @@ if execute_button:
 
     with col1:
         recommended_action = final_state.get('action', "No Action Required (Maintain State)")
-        priority_urgency   = final_state.get('priority_level', "ROUTINE")
+        priority_urgency   = str(final_state.get('priority_level', "ROUTINE")).upper()
 
         if priority_urgency == "CRITICAL":
             card_cls = "alert-critical"
             tag_text = "🚨 Critical Action Required"
-        elif priority_urgency == "High":
+        elif priority_urgency == "HIGH":
             card_cls = "alert-high"
             tag_text = "⚠️ High Priority Action"
         else:
@@ -661,9 +655,10 @@ if execute_button:
 
         badge_map = {
             "CRITICAL": "badge-critical",
-            "High":     "badge-high",
-            "Medium":   "badge-medium",
-            "Low":      "badge-low",
+            "HIGH":     "badge-high",
+            "MEDIUM":   "badge-medium",
+            "LOW":      "badge-low",
+            "ROUTINE":  "badge-routine",
         }
         badge_cls = badge_map.get(priority_urgency, "badge-routine")
 
@@ -689,19 +684,16 @@ if execute_button:
             ("Stock Status",       final_state.get('stock_status',       '—')),
         ]
 
-        # Show perishability risk only when item is perishable or a perishability risk was derived
-        if final_state.get('is_perishable') or final_state.get('perishability_risk') not in (None, ''):
+        # Dynamic optional facts mapping
+        if final_state.get('is_perishable') or final_state.get('perishability_risk'):
             fact_data.append(("Perishability Risk", final_state.get('perishability_risk', '—')))
 
-        # Warehouse vacancy should always be shown
         fact_data.append(("Warehouse Vacancy", final_state.get('warehouse_vacancy', '—')))
 
-        # Financial drain only when applicable (derived or present)
-        if final_state.get('financial_drain') not in (None, '', '—'):
+        if final_state.get('financial_drain'):
             fact_data.append(("Financial Drain", final_state.get('financial_drain', '—')))
 
-        # Operational threat only shown when actually present
-        if final_state.get('operational_threat') not in (None, '', '—'):
+        if final_state.get('operational_threat'):
             fact_data.append(("Operational Threat", final_state.get('operational_threat', '—')))
 
         facts_html = "".join(f"""

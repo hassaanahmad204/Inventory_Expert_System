@@ -10,30 +10,28 @@ class InventoryInferenceEngine:
 
     def run_forward_chaining(self, initial_facts):
         """
-        Executes standard Forward Chaining.
-        Starts with basic facts, evaluates rule conditions, derives intermediate conclusions,
-        and pushes forward until no more rules can fire.
+        Executes standard Forward Chaining inference.
+        Starts with user input facts, evaluates knowledge base rules layer-by-layer,
+        derives intermediate conclusions, and runs until no more rules can fire.
         """
         self.working_memory = initial_facts.copy()
         self.fired_rules_log = []
         self.execution_steps = []
         
-        agenda = list(self.knowledge_base)
         loop_control = True
-        
-        self.execution_steps.append(f"🟢 System Working Memory initialized with user context facts.")
+        self.execution_steps.append("🟢 System Working Memory initialized with user context facts.")
         
         while loop_control:
             rule_fired_this_cycle = False
             
-            for rule in agenda:
+            for rule in self.knowledge_base:
                 # Conflict Resolution Safeguard: Ensure a rule never fires twice to prevent infinite loops
                 if rule.rule_id in [r.rule_id for r in self.fired_rules_log]:
                     continue
                 
-                # Check if conditions evaluate to True within working memory
+                # Check if rule conditions evaluate to True within working memory
                 if rule.conditions(self.working_memory):
-                    # Fire Rule: Merge conclusion dictionary facts into working memory
+                    # Fire Rule: Merge derived conclusion dictionary facts into working memory
                     self.working_memory.update(rule.conclusion)
                     self.fired_rules_log.append(rule)
                     
@@ -44,12 +42,13 @@ class InventoryInferenceEngine:
                     self.execution_steps.append(log_entry)
                     
                     rule_fired_this_cycle = True
-                    break  # Break loop to restart priority agenda verification from scratch (Conflict Resolution Strategy)
+                    # Restart agenda verification cycle to allow newly derived facts to trigger downstream rules
+                    break
             
             if not rule_fired_this_cycle:
-                loop_control = False  # No matching rules found; Inference has completed successfully
+                loop_control = False  # No new matching rules found; Inference has completed successfully
                 
-        self.execution_steps.append(f"🏁 Forward Chaining inference successfully terminated. Working memory stabilized.")
+        self.execution_steps.append("🏁 Forward Chaining inference successfully terminated. Working memory stabilized.")
         return self.working_memory
 
     def get_explanation_data(self):
