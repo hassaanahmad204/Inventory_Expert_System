@@ -64,8 +64,8 @@ python --version
 Clone the project from GitHub and navigate into the project directory:
 
 ```bash
-git clone https://github.com/hassaanahmad204/smart-replenish-ai.git
-cd smart-replenish-ai
+git clone https://github.com/hassaanahmad204/Inventory_Expert_System.git
+cd Inventory_Expert_System
 ```
 
 3. Set Up a Virtual Environment (Recommended)
