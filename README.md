@@ -18,29 +18,12 @@ Managing modern warehouse inventory requires balancing unpredictable market tren
 
 The system follows a modular 4-layer architecture separating the user interface, inference engine, rule base, and audit tools:
 
-┌─────────────────────────────────────────────────────────┐
-│              Streamlit Responsive Web UI                │
-│                       (app.py)                          │
-└───────────────────────────┬─────────────────────────────┘
-│ Initial Working Memory Facts
-▼
-┌─────────────────────────────────────────────────────────┐
-│            Forward-Chaining Inference Engine            │
-│                       (Engine)                          │
-└───────────────────────────┬─────────────────────────────┘
-│ Evaluates Conditions
-▼
-┌─────────────────────────────────────────────────────────┐
-│             Domain Knowledge Base (75 Rules)            │
-│                  (knowledge_base.py)                    │
-└───────────────────────────┬─────────────────────────────┘
-│ Inferred Conclusions & CFs
-▼
-┌─────────────────────────────────────────────────────────┐
-│           Explainable AI (XAI) Output Trace             │
-│            (Interactive Visual Logs)                    │
-└───────────────────────────┬─────────────────────────────┘
-
+```mermaid
+flowchart TD
+    A[Streamlit Responsive Web UI<br/>app.py] -->|Initial working memory facts| B[Forward-Chaining Inference Engine<br/>Engine]
+    B -->|Evaluates conditions| C[Domain Knowledge Base<br/>75 Rules<br/>knowledge_base.py]
+    C -->|Inferred conclusions & CFs| D[Explainable AI Output Trace<br/>Interactive Visual Logs]
+```
 
 ### Key Highlights
 * **Forward-Chaining Inference Engine:** Iteratively fires valid rules layer-by-layer until no new facts can be inferred (system equilibrium).
